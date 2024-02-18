@@ -1,0 +1,28 @@
+﻿@model List<Student>
+@{
+    ViewBag.Title = "Students List";
+}
+<h1>Students:</h1>
+@if (ViewBag.Access <= 2)
+{
+    <p>"You do not have a sufficient access level to view this data."</p>
+}
+else if ((ViewBag.Access > 2) && (ViewBag.Access < 8))
+{
+    foreach (Student s in ViewBag.studentList)
+    {
+        <a asp-controller="Assignment" asp-action="List" asp-route-id="@s.firstName">@s.firstName, @s.lastName</a>
+
+        <text></text>
+    }
+}
+else if (ViewBag.Access >= 8)
+{
+    <p>Hello Admin</p>
+    foreach (Student s in ViewBag.studentList)
+    {
+        <a asp-controller="Assignment" asp-action="List" asp-route-id="@s.firstName">@s.firstName, @s.lastName, Grade: @s.grade</a>
+
+        <text></text>
+    }
+}
