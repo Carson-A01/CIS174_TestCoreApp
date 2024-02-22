@@ -3,26 +3,32 @@
     ViewBag.Title = "Students List";
 }
 <h1>Students:</h1>
-@if (ViewBag.Access <= 2)
+@if (ViewBag.Id <= 2)
 {
+    /*Will not show any info if Id is 2 or less*/
     <p>"You do not have a sufficient access level to view this data."</p>
 }
-else if ((ViewBag.Access > 2) && (ViewBag.Access < 8))
+else if ((ViewBag.Id > 2) && (ViewBag.Id < 8))
 {
-    foreach (Student s in ViewBag.studentList)
+    /*Shows all first and last names in list if Id is above 2 but less than 8*/
+    foreach (var student in @Model)
     {
-        <a asp-controller="Assignment" asp-action="List" asp-route-id="@s.firstName">@s.firstName, @s.lastName</a>
-
-        <text></text>
+        <tr>
+            <td>@student.firstName</td>
+            <td>@student.lastName</td>
+        </tr>
     }
 }
-else if (ViewBag.Access >= 8)
+else if (ViewBag.Id >= 8)
 {
     <p>Hello Admin</p>
-    foreach (Student s in ViewBag.studentList)
+    /*Shows all student info in list if Id is 8 or above*/
+    foreach (var student in @Model)
     {
-        <a asp-controller="Assignment" asp-action="List" asp-route-id="@s.firstName">@s.firstName, @s.lastName, Grade: @s.grade</a>
-
-        <text></text>
+        <tr>
+            <td>@student.firstName</td>
+            <td>@student.lastName</td>
+            <td>@student.grade</td>
+        </tr>
     }
 }

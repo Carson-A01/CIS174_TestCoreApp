@@ -9,31 +9,33 @@ namespace CIS174_TestCoreApp.Controllers
         {
             return View();
         }
+        [Route("Assignment/List/{id?}")] //Routing pattern that connects to this IActionResult
         [HttpPost]
-        public IActionResult List(int access)
+        public IActionResult List()
         {
-            ViewBag.Access = access;
+            //ViewBag.Access = access;
             List<Student> studentList = new List<Student>();
 
             Student student = new Student();
+            Student beth = new Student();
+            Student gabriela = new Student();
             student.firstName = "Gabe";
             student.lastName = "Clark";
             student.grade = "A";
             studentList.Add(student);
+            
+            beth.firstName = "Bethany";
+            beth.lastName = "Michaels";
+            beth.grade = "B";
+            studentList.Add(beth);
 
-            student = new Student();
-            student.firstName = "Bethany";
-            student.lastName = "Michaels";
-            student.grade = "B";
-            studentList.Add(student);
-
-            student = new Student();
-            student.firstName = "Gabriela";
-            student.lastName = "Clark";
-            student.grade = "A+";
-            studentList.Add(student);
+            gabriela.firstName = "Gabriela";
+            gabriela.lastName = "Clark";
+            gabriela.grade = "A+";
+            studentList.Add(gabriela);
 
             studentList.ToString();
+            //Creates three students and adds them to a List
             /*if (access <= 2)
             {
                 studentList = null;
